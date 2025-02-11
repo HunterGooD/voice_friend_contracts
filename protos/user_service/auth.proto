@@ -8,6 +8,8 @@ service Auth {
     rpc Register (RegisterRequest) returns (AuthResponse);
     rpc Login (LoginRequest) returns (AuthResponse);
     rpc LogOut (LogoutRequest) returns (LogoutResponse);
+    rpc UpdateAccessToken(RefreshToken) returns (AuthResponse);
+    rpc UpdateRefreshToken(RefreshToken) returns (AuthResponse);
 }
 
 message RegisterRequest {
@@ -26,6 +28,10 @@ message LoginRequest {
     string deviceID = 3;
     optional string email = 4;
     optional string phone = 5;
+}
+
+message RefreshToken {
+    string token = 1;
 }
 
 message AuthResponse {
